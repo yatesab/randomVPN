@@ -1,11 +1,16 @@
 #!/bin/bash
 
 PATH=/etc/randomVPN
-CONFIG="$(ls $CONFIGDIR |sort -R |head -n 1)"
+CONFIG="$(ls . |sort -R |head -n 1)"
 
-if ifconfig | grep "tun"
+if [[ ifconfig | grep "tun" ]]
 then
   ./errorLog "TunnelOpen"
 else
-  ./connectTunnel $CONFIG
+  if [[ $CONFIG == "" ]]
+  then
+    ./errorLog "NoConfig"
+  else
+    ./connectTunnel $CONFIG
+  fi
 fi
