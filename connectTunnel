@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if openvpn $1
+then
+  echo "worked!"
+else
+  errorLog "FailedConnect"
+fi
