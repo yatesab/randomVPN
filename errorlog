@@ -13,5 +13,8 @@ then
   elif [[ $1 == "NoConfig" ]]
     echo "No config files were found"
     echo "$(date) NoConfig Error \n" >> $LOGDIR
+  elif [[ $1 == "FailedConnection" ]]
+    echo "Connection to the VPN Server failed"
+    echo "$(date) FailedConnection Error \n" >> $LOGDIR
   fi
 fi
