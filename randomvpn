@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR="/etc/randomVPN"
+CONFIG="$(ls |sort -R |head -n 1)"
+
+if ifconfig | grep "tun"
+then
+  
+else
+  openvpn $CONFIG
+fi
