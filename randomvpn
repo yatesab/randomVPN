@@ -6,11 +6,11 @@ if [[ $# -eq 0 ]]
 then
 	if ifconfig | grep "tun" &> /dev/null
 	then
-		./errorlog "TunnelOpen"
+		./errorlog.sh "TunnelOpen"
 	else
-	        ./connectTunnel
+	        ./connectTunnel.sh
 	fi
 elif [[ $1 = "-l" ]]
 then
-        sudo ./showlogs
+        sudo ./showlogs.sh
 fi
