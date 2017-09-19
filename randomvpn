@@ -1,9 +1,16 @@
 #!/bin/bash
 
+PATH=$PATH:/etc/randomVPN
+
 if [[ $# -eq 0 ]]
 then
-        sudo /etc/randomVPN/connectTunnel
+	if ifconfig | grep "tun" &> /dev/null
+	then
+		./errorlog "TunnelOpen"
+	else
+	        ./connectTunnel
+	fi
 elif [[ $1 = "-l" ]]
 then
-        /etc/randomVPN/showlogs
+        sudo ./showlogs
 fi
