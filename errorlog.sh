@@ -9,6 +9,12 @@ then
   	then
     		echo "Tunnel is already open"
     		echo "$(date) TunnelOpen Error \n" >> ./logs/"$(date)"-Error-TO.txt
+	elif [ $1 = "NoArg" ]
+	then
+		echo "No Arguments Passed"
+		echo "Examples:"
+		echo "-l - Show logs"
+		echo "-s - Start Tunnel"
   	#No configuration files found in folder
   	elif [ $1 = "NoConfig" ]
 	then
