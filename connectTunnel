@@ -1,8 +1,7 @@
 #!/bin/bash
 
-if openvpn $1
-then
-  echo "worked!"
-else
-  errorLog "FailedConnect"
-fi
+VPNFILE="$(ls /etc/randomVPN/locations/ | sort -R | tail -n1)"
+
+# Need a log system here
+
+sudo openvpn /etc/randomVPN/locations/$VPNFILE
