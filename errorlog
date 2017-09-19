@@ -1,20 +1,22 @@
 #!/bin/bash
 
-LOGDIR="/etc/randomVPN/logs/error.txt"
+PATH=$PATH:/etc/randomVPN
 
 if [ $# -ne 0 ]
 then
-  #Tunnel is already open error
-  if [ $1 = "TunnelOpen" ]
-  then
-    echo "Tunnel is already open"
-    echo "$(date) TunnelOpen Error \n" >> $LOGDIR
-  #No configuration files found in folder
-  elif [ $1 = "NoConfig" ]
-    echo "No config files were found"
-    echo "$(date) NoConfig Error \n" >> $LOGDIR
-  elif [ $1 = "FailedConnection" ]
-    echo "Connection to the VPN Server failed"
-    echo "$(date) FailedConnection Error \n" >> $LOGDIR
-  fi
+	#Tunnel is already open error
+	if [ $1 = "TunnelOpen" ]
+  	then
+    		echo "Tunnel is already open"
+    		echo "$(date) TunnelOpen Error \n" >> ./logs/errorlog.txt
+  	#No configuration files found in folder
+  	elif [ $1 = "NoConfig" ]
+	then
+		echo "No config files were found"
+		echo "$(date) NoConfig Error \n" >> ./logs/errorlog.txt
+	elif [ $1 = "FailedConnection" ]
+	then
+		echo "Connection to the VPN Server failed"
+		echo "$(date) FailedConnection Error \n" >> ./logs/errorlog.txt
+  	fi
 fi
