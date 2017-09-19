@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PATH=$PATH:/etc/randomVPN
+source ./settings.sh
 
 if [ $# -eq 0 ]
 then
@@ -12,6 +13,20 @@ then
 		./errorlog.sh "TunnelOpen"
 	else
 	        ./connectTunnel.sh
+	fi
+elif [ $1 = "-c" ]
+then
+	if [ $2 = "Reboot" ]
+	then
+		if [ $systemreboot =  true ]
+		then
+			if [ $restarttime = "$(date)" ]
+				sudo reboot
+			fi
+		fi
+	elif [ $2 = "Start" ]
+	then
+		./connectTunnel.sh
 	fi
 elif [ $1 = "-l" ]
 then
