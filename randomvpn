@@ -3,7 +3,7 @@
 PATH=$PATH:/etc/randomVPN
 
 # Import variables from the settings file
-source ./settings.sh
+source ./settings
 
 # If no arguments were passed throw error
 if [ $# -eq 0 ]
@@ -27,8 +27,11 @@ then
 		#checks to see if we are allowed to reboot the system
 		if [ $systemreboot =  true ]
 		then
+			hour="$(date | awk '{ print $4 }')"
+			echo "$hour"
 			#If reboot is allowed then check for the reboot time
 			if [ $restarttime = "$(date)" ]
+			then
 				sudo reboot
 			fi
 		fi

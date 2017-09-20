@@ -2,5 +2,5 @@
 
 displaynum=5
 systemreboot=true
-restarttime=2
+restarttime=04:00:00
 startatreboot=true

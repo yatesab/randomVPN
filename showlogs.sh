@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PATH=$PATH:/etc/randomVPN
-source ./settings.sh
+source ./settings
 
 #Displays the last logs files created
 #number is determined by the settings file
