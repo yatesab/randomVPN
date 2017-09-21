@@ -25,4 +25,9 @@ then
 		echo "Connection to the VPN Server failed"
 		echo "$(date) FailedConnection Error \n" >> ./logs/$DATE-Error-FC.txt
   	fi
+	elif [ $1 = "TunnelOpen" ]
+	then
+		echo "Tunnel Successfully Opened"
+		echo "$(date) Tunnel Opened Success" >> ./logs/$DATE-Success-TO.txt
+	fi
 fi
