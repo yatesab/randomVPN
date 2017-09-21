@@ -1,11 +1,18 @@
 #!/bin/bash
+PATH=$PATH:/etc/randomVPN
+filecount="$(ls -1 ./locations | grep ".ovpn" | wc -l)"
 
-VPNFILE="$(ls /etc/randomVPN/locations/ | sort -R | tail -n1)"
-
-# Need a log system here
-if openvpn /etc/randomVPN/locations/$VPNFILE
+if [ $filecount -ne 0 ]
 then
-	./log.sh "TunnelOpen_Success"
+	VPNFILE="$(ls /etc/randomVPN/locations/ | sort -R | tail -n1)"
+
+	# Need a log system here
+	if openvpn /etc/randomVPN/locations/$VPNFILE
+	then
+		./log.sh "TunnelOpen_Success"
+	else
+		./log.sh "FailedConnection"
+	fi
 else
-	./log.sh "FailedConnection"
+	./log.sh "NoConfig"
 fi
