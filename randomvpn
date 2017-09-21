@@ -8,13 +8,13 @@ source ./settings
 # If no arguments were passed throw error
 if [ $# -eq 0 ]
 then
-	./errorlog.sh "NoArg"
+	./log.sh "NoArg"
 # Starts tunnel if -s was passed in
 elif [ $1 = "-s" ]
 then
 	if ifconfig | grep "tun" &> /dev/null
 	then
-		./errorlog.sh "TunnelOpen"
+		./log.sh "TunnelOpen_Error"
 	else
 	        ./connectTunnel.sh
 	fi
