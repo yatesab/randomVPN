@@ -12,17 +12,20 @@ then
 # Starts tunnel if -s was passed in
 elif [ $1 = "-s" ]
 then
-	if ifconfig | grep "tun" &> /dev/null
+	if [ $2 = "cron" ]
 	then
-		./log.sh "TunnelOpen_Error"
+		#Checks if start at reboot is active
+		if [ $startatreboot = true ]
+		then
+			./connectTunnel.sh
+		fi
 	else
-	        ./connectTunnel.sh
+		./connectTunnel.sh
 	fi
-# Used for the crontab features
-elif [ $1 = "-c" ]
+# Checks for the reboot argument passed 
+elif [ $1 = "-r" ]
 then
-	# Checks for the reboot argument passed 
-	if [ $2 = "-r" ]
+	if [ $2 = "cron" ]
 	then
 		#checks to see if we are allowed to reboot the system
 		if [ $systemreboot =  true ]
@@ -38,14 +41,9 @@ then
 				sudo reboot
 			fi
 		fi
-	#Used on reboot for crontab to start the VPN
-	elif [ $2 = "-s" ]
-	then
-		#Checks if start at reboot is active
-		if [ $startatreboot = true ]
-		then
-			./connectTunnel.sh
-		fi
+	else
+		./log.sh "Reboot"
+		sudo reboot
 	fi
 elif [ $1 = "-l" ]
 then
