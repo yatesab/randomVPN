@@ -1,6 +1,6 @@
 #Settings for the randomVPN program
 
-displaynum=5
+displaynum=10
 systemreboot=true
-restarttime=04:00:00
+restarttime=23:29
 startatreboot=true
