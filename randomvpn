@@ -29,9 +29,12 @@ then
 		then
 			hour="$(date | sed 's/:/ /g' | awk '{ print $4 }')"
 			minute="$(date | sed 's/:/ /g' | awk '{ print $5 }')"
+
+			echo "$hour $minute"
 			#If reboot is allowed then check for the reboot time
 			if [ $restarttime = "$hour:$minute" ]
 			then
+				./log.sh "Reboot"
 				sudo reboot
 			fi
 		fi
