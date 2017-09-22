@@ -22,7 +22,7 @@ then
 elif [ $1 = "-c" ]
 then
 	# Checks for the reboot argument passed 
-	if [ $2 = "Reboot" ]
+	if [ $2 = "-r" ]
 	then
 		#checks to see if we are allowed to reboot the system
 		if [ $systemreboot =  true ]
@@ -39,7 +39,7 @@ then
 			fi
 		fi
 	#Used on reboot for crontab to start the VPN
-	elif [ $2 = "Start" ]
+	elif [ $2 = "-s" ]
 	then
 		#Checks if start at reboot is active
 		if [ $startatreboot = true ]
