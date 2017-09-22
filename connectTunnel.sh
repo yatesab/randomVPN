@@ -6,12 +6,17 @@ if [ $filecount -ne 0 ]
 then
 	VPNFILE="$(ls /etc/randomVPN/locations/ | sort -R | tail -n1)"
 
-	# Need a log system here
-	if openvpn /etc/randomVPN/locations/$VPNFILE
+	if ifconfig | grep "tun" &> /dev/null
 	then
-		./log.sh "TunnelOpen_Success"
+		./log.sh "TunnelOpen_Error"
 	else
-		./log.sh "FailedConnection"
+		# Need a log system here
+		if openvpn /etc/randomVPN/locations/$VPNFILE
+		then
+			./log.sh "TunnelOpen_Success"
+		else
+			./log.sh "FailedConnection"
+		fi
 	fi
 else
 	./log.sh "NoConfig"
